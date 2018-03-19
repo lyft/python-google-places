@@ -39,6 +39,8 @@ __version__ = '1.4.1'
 __author__ = 'Samuel Adu'
 __email__ = 'sam@slimkrazy.com'
 
+DEFAULT_TIMEOUT = 1
+
 
 class cached_property(object):
     def __init__(self, func):
@@ -68,7 +70,7 @@ def _fetch_remote(service_url, params=None, use_http_post=False):
     else:
         request_url = service_url
         request = urllib.request.Request(service_url, data=encoded_data)
-    return (request_url, urllib.request.urlopen(request))
+    return (request_url, urllib.request.urlopen(request, timeout=DEFAULT_TIMEOUT))
 
 def _fetch_remote_json(service_url, params=None, use_http_post=False):
     """Retrieves a JSON object from a URL."""
